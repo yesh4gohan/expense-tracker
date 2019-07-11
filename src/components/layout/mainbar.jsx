@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import ExpenseInfoBar from '../expenseinfobar'
+import ExpenseInfoBar from '../expenseinfobar';
+import Addexpense from '../addexpense';
 export default class Mainbar extends Component {
   render() {
     return (
@@ -25,7 +26,7 @@ export default class Mainbar extends Component {
           </div>
         </div>
         <div className="row m-3">
-          <button className="btn btn-primary">Add expenses</button>
+          <Addexpense/>
         </div>
         <div className="row m-3">
           <table class="table">
