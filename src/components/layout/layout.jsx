@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Mainbar from "./mainbar";
 import Sidebar from "./sidebar";
-import {API} from 'aws-amplify';
 
 export default class Layout extends Component {
   

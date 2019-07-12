@@ -1,5 +1,7 @@
 import {combineReducers} from 'redux';
-import Expenses from './addExpenseReducer'
+import Expenses from './addExpenseReducer';
+import custom from './customReducers';
 export default combineReducers({
-  expenses:Expenses
+  expenses:Expenses,
+  editModal:custom
 }); 

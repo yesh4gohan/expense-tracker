@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import ExpenseInfoBar from '../expenseinfobar';
 import Addexpense from '../addexpense';
-export default class Mainbar extends Component {
+import {addNewExpenseAction,getAllExpenses} from '../../redux-tools/actions';
+import { connect } from "react-redux";
+class Mainbar extends Component {
+
+  async componentDidMount(){
+    await this.props.getAllExpenses();
+  }
   render() {
+    console.log(this.props.expenses)
     return (
       <div>
         <div className="row m-3">
@@ -45,3 +52,17 @@ export default class Mainbar extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  expenses:state.expenses.expenses
+  });
+  
+  const mapDispatchToProps = {
+    addNewExpenseAction,
+    getAllExpenses
+  };
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Mainbar);

@@ -13,9 +13,7 @@ export class Addexpense extends Component {
     amount: 0,
     name: ""
   };
-  async componentDidMount(){
-    await this.props.getAllExpenses();
-  }
+
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -76,12 +74,12 @@ export class Addexpense extends Component {
     <div>
       <button
         type="button"
-        className="btn btn-primary"
+        className={this.props.edit&& this.props.edit?"btn btn-primary btn-sm":"btn btn-primary"}
         data-toggle="modal"
         data-target="#exampleModalCenter"
         onClick={this.toggleModal}
       >
-        Launch demo modal
+       {this.props.edit&& this.props.edit? "edit":"Add new expense"}
       </button>
 
       <div
@@ -134,7 +132,7 @@ export class Addexpense extends Component {
     </div>
   );
   render() {
-    console.log(this.props)
+    
     return this.renderModal();
   }
 }
@@ -152,3 +150,64 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Addexpense);
+
+
+{/* <div>
+      <button
+        type="button"
+        className="btn btn-primary"
+        data-toggle="modal"
+        data-target="#exampleModalCenter"
+        onClick={this.toggleModal}
+      >
+        Add new expense
+      </button>
+
+      <div
+        className="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle">
+                Modal title
+              </h5>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">{this.renderExpenseForm()}</div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+                onClick={
+                  this.addNewExpense
+                }
+                disabled = {!this.validateInputs()}
+              >
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> */}
