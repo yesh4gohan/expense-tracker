@@ -3,5 +3,5 @@ export const categories = [
   "Restaurant",
   "Travel",
   "Medical",
-  "Loan"
+  "Loan",
 ]
