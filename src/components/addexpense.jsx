@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { categories } from "../mockFiles/mockCategories";
+import {addNewExpenseAction,getAllExpenses} from '../redux-tools/actions';
 export class Addexpense extends Component {
   static propTypes = {
     prop: PropTypes
@@ -12,9 +13,17 @@ export class Addexpense extends Component {
     amount: 0,
     name: ""
   };
+  async componentDidMount(){
+    await this.props.getAllExpenses();
+  }
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
+
+  addNewExpense = async e => {
+    await this.props.addNewExpenseAction(this.state);
+
+  }
   renderExpenseForm = () => (
     <div>
       <div className="row m-1">
@@ -58,6 +67,11 @@ export class Addexpense extends Component {
       </div>
     </div>
   );
+  
+  validateInputs = () => {
+    return this.state.category.length && this.state.name.length && this.state.amount>0
+  }
+
   renderModal = () => (
     <div>
       <button
@@ -106,9 +120,10 @@ export class Addexpense extends Component {
                 type="button"
                 class="btn btn-primary"
                 data-dismiss="modal"
-                onClick={() => {
-                  console.log(this.state);
-                }}
+                onClick={
+                  this.addNewExpense
+                }
+                disabled = {!this.validateInputs()}
               >
                 Save changes
               </button>
@@ -119,13 +134,19 @@ export class Addexpense extends Component {
     </div>
   );
   render() {
+    console.log(this.props)
     return this.renderModal();
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+expenses:state.expenses.expenses
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  addNewExpenseAction,
+  getAllExpenses
+};
 
 export default connect(
   mapStateToProps,

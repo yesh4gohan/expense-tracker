@@ -24,10 +24,10 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/" component = {Layout}/>
-
+        <Route exact path="*" component = {()=><div> 404 not found</div>}/>
       </Switch>
     </div>
-    <Route exact path="*" component = {()=><div> 404 not found</div>}/>
+    
     </Router>
   );
 }
