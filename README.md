@@ -1,5 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The project uses the following tech stack
 
+React for UI components
+Bootstrap for styling
+AWS API gateway for RESTful APIS
+AWS lambda for backend services
+DynamoDB as database
 ## Available Scripts
 
 In the project directory, you can run:
