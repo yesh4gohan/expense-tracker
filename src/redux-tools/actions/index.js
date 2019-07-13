@@ -1,5 +1,5 @@
 import {ADD_NEW_EXPENSE,GET_ALL_EXPENSES,LAUNCH_EDIT_MODAL} from './actionTypes';
-import {addNewExpense,fetchAllExpenses} from '../../api/api-call';
+import {addNewExpense,fetchAllExpenses,editExpenseApi} from '../../api/api-call';
 export const addNewExpenseAction = expense => async dispatch => {
   let newExpense = await addNewExpense(expense);
   dispatch({
@@ -16,9 +16,11 @@ export const getAllExpenses = () => async dispatch => {
   })
 }
 
-export const launchEditModal = val => {
-  return {
-    type:LAUNCH_EDIT_MODAL,
-    payload:val
-  }
+export const editExpense = payload => async dispatch => {
+  await editExpenseApi(payload);
+  let expenses = await fetchAllExpenses();
+  dispatch({
+    type:GET_ALL_EXPENSES,
+    payload:expenses
+  })
 }

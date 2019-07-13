@@ -36,13 +36,31 @@ export const addNewExpense = expense => {
   const payload = {
     body: {
       'expenseId': `expense_${Math.ceil(Math.random()*1000)}`,
-      'Category': expense.category,
-      'name': expense.name,
-      'Amount': expense.amount,
-      'date': date
+      'Category': expense.Category,
+      'expName': expense.expName,
+      'Amount': expense.Amount,
+      'expdate': date
     }
   }
   return API.post(api,'/expenses',payload)
   .then(res=>(res))
+  .catch(err=>console.log(err))
+}
+
+
+export const editExpenseApi = load=> {
+  
+  console.log(load)
+  const payload = {
+    body: {
+      'expenseId': load.expenseId,
+      'Category': load.Category,
+      'expName': load.expName,
+      'Amount': load.Amount,
+      'expdate': date
+    }
+  }
+  return API.post(api,'/expenses/edit',payload)
+  .then(res=>console.log(res))
   .catch(err=>console.log(err))
 }

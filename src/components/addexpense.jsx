@@ -9,9 +9,9 @@ export class Addexpense extends Component {
   };
 
   state = {
-    category: "",
-    amount: 0,
-    name: ""
+    Category: "Misc",
+    Amount: 0,
+    expName: ""
   };
 
   onChange = e => {
@@ -28,7 +28,7 @@ export class Addexpense extends Component {
         <div className="input-group mb-3">
           <select
             className="custom-select"
-            id="category"
+            id="Category"
             defaultValue="Misc"
             onChange={this.onChange}
           >
@@ -44,9 +44,9 @@ export class Addexpense extends Component {
           <input
             type="text"
             className="form-control"
-            placeholder="Item name"
-            id="name"
-            value={this.state.name}
+            placeholder="Item expName"
+            id="expName"
+            value={this.state.expName}
             onChange={this.onChange}
           />
         </div>
@@ -56,9 +56,9 @@ export class Addexpense extends Component {
           <input
             type="number"
             className="form-control"
-            id="amount"
+            id="Amount"
             placeholder="Amount Spent in Rs."
-            value={this.state.amount}
+            value={this.state.Amount}
             onChange={this.onChange}
           />
         </div>
@@ -67,19 +67,19 @@ export class Addexpense extends Component {
   );
   
   validateInputs = () => {
-    return this.state.category.length && this.state.name.length && this.state.amount>0
+    return this.state.Category.length && this.state.expName.length && this.state.Amount>0
   }
 
   renderModal = () => (
     <div>
       <button
         type="button"
-        className={this.props.edit&& this.props.edit?"btn btn-primary btn-sm":"btn btn-primary"}
+        className="btn btn-primary"
         data-toggle="modal"
         data-target="#exampleModalCenter"
         onClick={this.toggleModal}
       >
-       {this.props.edit&& this.props.edit? "edit":"Add new expense"}
+        Add new expense
       </button>
 
       <div
@@ -152,62 +152,3 @@ export default connect(
 )(Addexpense);
 
 
-{/* <div>
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-toggle="modal"
-        data-target="#exampleModalCenter"
-        onClick={this.toggleModal}
-      >
-        Add new expense
-      </button>
-
-      <div
-        className="modal fade"
-        id="exampleModalCenter"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLongTitle">
-                Modal title
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">{this.renderExpenseForm()}</div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                data-dismiss="modal"
-                onClick={
-                  this.addNewExpense
-                }
-                disabled = {!this.validateInputs()}
-              >
-                Save changes
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> */}
