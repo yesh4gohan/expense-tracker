@@ -39,7 +39,8 @@ export const addNewExpense = expense => {
       'Category': expense.Category,
       'expName': expense.expName,
       'Amount': expense.Amount,
-      'expdate': date
+      'expdate': date,
+      'Deleted':false
     }
   }
   return API.post(api,'/expenses',payload)
@@ -51,13 +52,15 @@ export const addNewExpense = expense => {
 export const editExpenseApi = load=> {
   
   console.log(load)
+  load.Deleted = load.Deleted ? load.Deleted:false;
   const payload = {
     body: {
       'expenseId': load.expenseId,
       'Category': load.Category,
       'expName': load.expName,
       'Amount': load.Amount,
-      'expdate': date
+      'expdate': date,
+      'Deleted':load.Deleted
     }
   }
   return API.post(api,'/expenses/edit',payload)

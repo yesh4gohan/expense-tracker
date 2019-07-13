@@ -42,7 +42,7 @@ export class EditExpenseModal extends Component {
               defaultValue={this.state.Category}
               onChange={this.onChange}
             >
-              <option selected>Misc</option>
+              <option selected>{this.state.Category}</option>
               {categories.map(category => (
                 <option value={category}>{category}</option>
               ))}

@@ -20,6 +20,7 @@ export class Addexpense extends Component {
 
   addNewExpense = async e => {
     await this.props.addNewExpenseAction(this.state);
+    this.setState({Category:"Misc",Amount:0,expName:""})
 
   }
   renderExpenseForm = () => (

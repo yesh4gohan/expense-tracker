@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import EditExpenseModal from './editExpenseModal';
+import {editExpense} from '../redux-tools/actions';
+
 export class ExpenseInfoBar extends Component {
   static propTypes = {
     prop: PropTypes
@@ -12,6 +14,11 @@ export class ExpenseInfoBar extends Component {
   setId = (id) => {
     this.setState({expenseId:id})
   }
+
+  deleteExpense = (expense) => {
+    expense.Deleted = true;
+    this.props.editExpense(expense);
+  }
   
   renderExpenseList = expenses => (
     <div>
@@ -19,7 +26,7 @@ export class ExpenseInfoBar extends Component {
         expenses.map((expense, id) => {
           if(expense.expenseId !== this.state.expenseId){
             return <div
-            className="row m-3 bg-warning"
+            className={!expense.Deleted?"row m-3 bg-warning":"row m-3 bg-secondary"}
             style={{ height: "40px", borderRadius: 5 }}
             key={id}
           >
@@ -40,7 +47,7 @@ export class ExpenseInfoBar extends Component {
             <div className="col-sm-3">
               {expense.expdate}
               <span style={{ float: "right" }}>
-                <button className="btn btn-danger btn-sm">delete</button>
+                <button className="btn btn-danger btn-sm" onClick = {()=>{this.deleteExpense(expense)}} >delete</button>
               </span>
             </div>
           </div>
@@ -65,7 +72,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  
+  editExpense
 };
 
 export default connect(
