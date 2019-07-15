@@ -1,12 +1,14 @@
-import { LAUNCH_EDIT_MODAL } from "../actions/actionTypes";
-const initialState = {};
+import { SET_PATH } from "../actions/actionTypes";
+const initialState = {
+
+}
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case LAUNCH_EDIT_MODAL:
-      return { ...state, editModal:payload };
+    case SET_PATH:
+      return { ...state, routePath:payload };
 
-    default:
-      return state;
-  }
+      default:
+        return state;
+    }
 };
