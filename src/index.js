@@ -30,6 +30,7 @@ const store = createStore(
 );
 const persistor = persistStore(store);
 
+
 const ReduxApp = () => {
   return (
     <Provider store={store}>

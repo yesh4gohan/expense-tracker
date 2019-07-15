@@ -19,6 +19,10 @@ export class ExpenseInfoBar extends Component {
     expense.Deleted = true;
     this.props.editExpense(expense);
   }
+  undoExpense = (expense) => {
+    expense.Deleted = false;
+    this.props.editExpense(expense);
+  }
   
   renderExpenseList = expenses => (
     <div>
@@ -46,9 +50,11 @@ export class ExpenseInfoBar extends Component {
             <div className="col-sm-3">{expense.Amount}</div>
             <div className="col-sm-3">
               {expense.expdate}
-              <span style={{ float: "right" }}>
+              {!expense.Deleted?<span style={{ float: "right" }}>
                 <button className="btn btn-danger btn-sm" onClick = {()=>{this.deleteExpense(expense)}} >delete</button>
-              </span>
+              </span>:<span style={{ float: "right" }}>
+                <button className="btn btn-success btn-sm" onClick = {()=>{this.undoExpense(expense)}} >undo</button>
+              </span>}
             </div>
           </div>
           }
@@ -67,8 +73,8 @@ export class ExpenseInfoBar extends Component {
 }
 
 const mapStateToProps = state => ({
-  expenses: state.expenses.expenses,
-  editModal: state.editModal.editModal
+  expenses: state.expenses.expenses
+
 });
 
 const mapDispatchToProps = {
